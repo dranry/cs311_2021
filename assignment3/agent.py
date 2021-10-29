@@ -29,3 +29,11 @@ if __name__ == "__main__":
 
 #	Maybe, thought will be to play well, unless opponent plays rudely, sprinkling in a couple confesses here and there 
 #	Based on what the opponent is doing, then play super rude for the last 10 or so iterations
+
+#TLDR:	Play nicely with a relatively short term memory to try and prevent people from playing just slightly favorably enough to keep my agent favorable.
+#			Potentially a lot of details to sort out in the end.
+#			Need to figure out which structure is gonna be used, htinking a limited space stack.
+#		Might keep track of how every iteration goes just to have a general overview of how the game is going.
+#		Probably a good idea to track mine and my opponents points
+#		Save all of this to a json
+
