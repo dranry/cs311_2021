@@ -1,50 +1,6 @@
-import argparse
-import random
-import json
-import os
-
 #Example command line argument
 #python agent.py --last_opponent_move "silent"
 #The --command is used to specify which field each input applies to
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--init', help='called when new game')
-    parser.add_argument('--iterations', help='number of iterations in game')
-    parser.add_argument('--last_opponent_move', help='last opponent move')
-
-    #print(args.last_opponent_move)
-    args = parser.parse_args()
-
-    x = ["test", "silent", "confess"]
-    
-    y = json.dumps(x)#, indent = 4)
-    #print(y)
-
-    #with open("sample.json", "w") as outfile:
-    #    outfile.write(y)
-    with open("sample.json", "a") as f:
-        pass
-    with open("sample.json", "r") as openfile:
-        try:
-            y = json.load(openfile)
-        except:
-            y = []
-            pass
-
-    y.append("test")
-    y.append("confess")
-    #print()
-    #for i in y:
-    #    if i == "silent":
-    #        print("no sound")
-    #    elif i == "confess":
-    #        print("many sound")
-    #    elif i == "test":
-    #        print(i)
-
-    print( random.choice(['confess', 'silent']) )
-    
 
 #	Plans:
 #	The first time I like the idea of either always cooperating or at least having a high chance to.
@@ -67,4 +23,35 @@ if __name__ == "__main__":
 #		Might keep track of how every iteration goes just to have a general overview of how the game is going.
 #		Probably a good idea to track mine and my opponents points
 #		Save all of this to a json
+import argparse
+import random
+import json
 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--init', help='called when new game')
+    parser.add_argument('--iterations', help='number of iterations in game')
+    parser.add_argument('--last_opponent_move', help='last opponent move')
+
+    args = parser.parse_args()
+
+    past_moves = []
+    with open("grievances.json", "a") as f:
+        pass
+    with open("grievances.json", "r") as openfile:
+        try:
+            past_moves = json.load(openfile)
+        except:
+            past_moves = []
+            pass
+    last_move = args.last_opponent_move 
+    if last_move != None:
+        past_moves.append(last_move)
+    
+    save_moves = json.dumps(past_moves)#, indent = 4)
+
+    with open("grievances.json", "w") as outfile:
+        outfile.write(save_moves)
+
+    print( random.choice(['confess', 'silent']) )
+    
