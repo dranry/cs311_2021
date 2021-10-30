@@ -47,11 +47,20 @@ if __name__ == "__main__":
             past_moves = []
             pass
 
+    #Loads last move argument into last_move
     last_move = args.last_opponent_move 
 
     #Appends current iteration's past move
     if last_move != None:
-        past_moves.append(last_move) 
+        past_moves.insert(0, last_move) 
+
+    #Keeps total recorded moves under a value
+    if len(past_moves) >= 5:
+        past_moves.pop()
+
+    ######################################################################### Work in here
+
+    #########################################################################
 
     #Puts moves into save_moves in json format to be saved into file
     save_moves = json.dumps(past_moves) 
