@@ -59,14 +59,25 @@ if __name__ == "__main__":
         past_moves.insert(0, last_move) 
 
     #Keeps total recorded moves under a value
-    if len(past_moves) >= 5:
+    if len(past_moves) > 5:
         past_moves.pop()
 
     ######################################################################### Work in here
     decision = 'silent' #random.choice(['confess', 'silent'])
     if num_moves > 1 and num_moves < 100:
-        #dostuff
-        pass
+        #Insert Decision making here
+        num_silent = 0
+        num_confess = 0
+        for i in past_moves:
+            if i == 'silent':
+                num_silent += 1
+            elif i == 'confess':
+                num_confess += 1
+
+        #print(num_silent)
+        #print(num_confess)
+	#This is where decisions of how to use these will be placed
+        
     elif num_moves > 99:
         decision = 'confess'
 
@@ -76,6 +87,7 @@ if __name__ == "__main__":
     if num_moves < 100:
         past_moves.append(num_moves)
     else:
+        #If over iteraetion limit, wipes the past_moves
         past_moves = []
 
     #Creates json format to be written
