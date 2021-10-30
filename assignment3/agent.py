@@ -1,20 +1,51 @@
 import argparse
 import random
+import json
+import os
+
 #Example command line argument
 #python agent.py --last_opponent_move "silent"
 #The --command is used to specify which field each input applies to
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--init', help='called when new game')
     parser.add_argument('--iterations', help='number of iterations in game')
     parser.add_argument('--last_opponent_move', help='last opponent move')
 
+    #print(args.last_opponent_move)
     args = parser.parse_args()
 
-    print(args.last_opponent_move)
+    x = ["test", "silent", "confess"]
+    
+    y = json.dumps(x)#, indent = 4)
+    #print(y)
+
+    #with open("sample.json", "w") as outfile:
+    #    outfile.write(y)
+    with open("sample.json", "a") as f:
+        pass
+    with open("sample.json", "r") as openfile:
+        try:
+            y = json.load(openfile)
+        except:
+            y = []
+            pass
+
+    y.append("test")
+    y.append("confess")
+    #print()
+    #for i in y:
+    #    if i == "silent":
+    #        print("no sound")
+    #    elif i == "confess":
+    #        print("many sound")
+    #    elif i == "test":
+    #        print(i)
 
     print( random.choice(['confess', 'silent']) )
     
+
 #	Plans:
 #	The first time I like the idea of either always cooperating or at least having a high chance to.
 #	When receiving opponent's previous move, store it into a data structure
