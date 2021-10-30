@@ -36,22 +36,31 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     past_moves = []
-    with open("grievances.json", "a") as f:
+    #To make sure that the file exists
+    with open("grievances.json", "a") as f: 
         pass
-    with open("grievances.json", "r") as openfile:
+    #Reads past opponent moves into past_moves list
+    with open("grievances.json", "r") as openfile: 
         try:
             past_moves = json.load(openfile)
         except:
             past_moves = []
             pass
-    last_move = args.last_opponent_move 
-    if last_move != None:
-        past_moves.append(last_move)
-    
-    save_moves = json.dumps(past_moves)#, indent = 4)
 
+    last_move = args.last_opponent_move 
+
+    #Appends current iteration's past move
+    if last_move != None:
+        past_moves.append(last_move) 
+
+    #Puts moves into save_moves in json format to be saved into file
+    save_moves = json.dumps(past_moves) 
+
+    #Saves the past moves list into a file for use in next iteration
     with open("grievances.json", "w") as outfile:
         outfile.write(save_moves)
 
+    #Prints output decision
     print( random.choice(['confess', 'silent']) )
+    #print(decision) #decision being the string output, either 'confess' or 'silent' based on algorithm
     
