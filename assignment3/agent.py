@@ -35,6 +35,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    num_moves = 0
     past_moves = []
     #To make sure that the file exists
     with open("grievances.json", "a") as f: 
@@ -43,10 +44,13 @@ if __name__ == "__main__":
     with open("grievances.json", "r") as openfile: 
         try:
             past_moves = json.load(openfile)
+            num_moves = (past_moves.pop())
         except:
             past_moves = []
             pass
 
+    #Keeps track of what iteration we're in
+    num_moves += 1
     #Loads last move argument into last_move
     last_move = args.last_opponent_move 
 
@@ -59,17 +63,29 @@ if __name__ == "__main__":
         past_moves.pop()
 
     ######################################################################### Work in here
+    decision = 'silent' #random.choice(['confess', 'silent'])
+    if num_moves > 1 and num_moves < 100:
+        #dostuff
+        pass
+    elif num_moves > 99:
+        decision = 'confess'
 
     #########################################################################
 
-    #Puts moves into save_moves in json format to be saved into file
+    #Saves number of moves into the list to be saved into the json for use in next iteration
+    if num_moves < 100:
+        past_moves.append(num_moves)
+    else:
+        past_moves = []
+
+    #Creates json format to be written
     save_moves = json.dumps(past_moves) 
 
     #Saves the past moves list into a file for use in next iteration
     with open("grievances.json", "w") as outfile:
         outfile.write(save_moves)
 
+    #print( random.choice(['confess', 'silent']) )
     #Prints output decision
-    print( random.choice(['confess', 'silent']) )
-    #print(decision) #decision being the string output, either 'confess' or 'silent' based on algorithm
+    print(decision) #decision being the string output, either 'confess' or 'silent' based on algorithm
     
