@@ -80,8 +80,6 @@ if __name__ == "__main__":
         
     elif num_moves > 99:
         decision = 'confess'
-        print('test')
-    print("test")
 
     #########################################################################
 
