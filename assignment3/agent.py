@@ -74,10 +74,12 @@ if __name__ == "__main__":
             elif i == 'confess':
                 num_confess += 1
 
-        #print(num_silent)
-        #print(num_confess)
-	#This is where decisions of how to use these will be placed
-        
+	#This is where the magic happens
+        if num_confess > num_silent:
+            decision = 'confess'
+        else:
+            decision = 'silent'
+
     elif num_moves > 99:
         decision = 'confess'
 
