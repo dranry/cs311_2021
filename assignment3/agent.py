@@ -27,6 +27,7 @@ import argparse
 import random
 import json
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--init', help='called when new game')
@@ -97,7 +98,6 @@ if __name__ == "__main__":
     with open("grievances.json", "w") as outfile:
         outfile.write(save_moves)
 
-    #print( random.choice(['confess', 'silent']) )
     #Prints output decision
     print(decision) #decision being the string output, either 'confess' or 'silent' based on algorithm
     
