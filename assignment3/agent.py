@@ -48,7 +48,6 @@ if __name__ == "__main__":
             num_moves = (past_moves.pop())
         except:
             past_moves = []
-            pass
 
     #Keeps track of what iteration we're in
     num_moves += 1
@@ -56,12 +55,12 @@ if __name__ == "__main__":
     last_move = args.last_opponent_move 
 
     #Appends current iteration's past move
-    if last_move != None:
-        past_moves.insert(0, last_move) 
+    if last_move == 'silent' or last_move == 'confess':
+        past_moves.insert(0, last_move)
 
     #Keeps total recorded moves under a value
     if len(past_moves) > 5:
-        past_moves.pop()
+    	past_moves.pop()
 
     ######################################################################### Work in here
     decision = 'silent' #random.choice(['confess', 'silent'])
@@ -81,6 +80,8 @@ if __name__ == "__main__":
         
     elif num_moves > 99:
         decision = 'confess'
+        print('test')
+    print("test")
 
     #########################################################################
 
@@ -88,7 +89,7 @@ if __name__ == "__main__":
     if num_moves < 100:
         past_moves.append(num_moves)
     else:
-        #If over iteraetion limit, wipes the past_moves
+        #If over iteraetion limit, wipes the past_moves, Functions to make sure nothing carries over if the grievances file is not deleted between tournament iterations
         past_moves = []
 
     #Creates json format to be written
