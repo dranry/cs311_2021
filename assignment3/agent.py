@@ -22,6 +22,15 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    #Handles initialization
+    initialization = args.init
+    if initialization == 'true':
+        reset_moves = []
+        reset_moves = json.dumps(reset_moves) 
+
+        with open("grievances.json", "w") as outfile:
+            outfile.write(reset_moves)
+
     #num_moves = 0
     past_moves = []
     #To make sure that the file exists
