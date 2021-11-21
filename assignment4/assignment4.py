@@ -1,4 +1,4 @@
-#Make a tree of nodes that will be the foundation for a neural network
+#Goal: Make a tree of nodes to be the basis for an artificial neural network
 import random
 import string
 import itertools
@@ -39,19 +39,18 @@ class Node:
 				print(f"{indent} with weight of {self.weight[i]}")
 			except:
 				pass
-
 			self.children[i].pretty_print(current_layer_number + 1, node_per_layer_map)
 		return
 
 	def set_random_weights(self, current_layer_number, node_per_layer_map):
 		if current_layer_number >= len(node_per_layer_map):
-			self.weight = [0.0] * len(node_per_layer_map)
 			return
-		self.weight = [0.0] * len(node_per_layer_map)
+
+		self.weight = [0.0] * len(self.children)
 			
 		for i in range(len(self.children)):
-			self.weight[1] = random.uniform(0, 1)
-			self.children[1].set_random_weights(current_layer_number + 1, node_per_layer_map)			
+			self.weight[i] = random.uniform(0, 1)
+			self.children[i].set_random_weights(current_layer_number + 1, node_per_layer_map)			
 		return
 
 new_node = Node()
@@ -61,4 +60,3 @@ new_node.pretty_print(0, NODE_COUNT_PER_LAYER)
 new_node.set_random_weights(0, NODE_COUNT_PER_LAYER)
 print("\nWith Weights!!\n")
 new_node.pretty_print(0, NODE_COUNT_PER_LAYER)
-
