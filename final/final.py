@@ -1,5 +1,5 @@
 #	Daniel Raney
-#	Final Project By: Daniel Raney
+#	Final Project 
 #	Sorting algorithm implementation and stats testing
 #	List so far: 
 #	Bubble Sort
@@ -106,12 +106,9 @@ bubbleData = copyArray(sortData)
 bubbleTime = doBubbleSort(bubbleData)
 
 print("//////////\nMerge Sort:")
-
 mergeData = copyArray(sortData)
-print(mergeData)
 mergeTime = doMergeSort(mergeData)
-print(mergeData)
-#print(mergeTime)
+
 print("Bubble Sort:")
 for i in range(0, len(bubbleData)):
 	print(str(len(bubbleData[i])) + " elements took " + str(bubbleTime[i]) + " seconds")
